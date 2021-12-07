@@ -69,11 +69,18 @@ iptables -t nat -A POSTROUTING -s 10.36.0.0/16 -o eth0 -j SNAT --to-source 192.1
 
 Kemudian dilakukan testing node-node pada topologi dengan ping google.com, maka node-node sudah dapat mengakses keluar.
 
+
 ## Soal 2
 
 Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada server yang merupakan DHCP Server dan DNS Server demi menjaga keamanan.
 
 **Pembahasan:**
+
+Pada router Foosha ditambahkan rule berikut.
+```
+iptables -A FORWARD -p tcp --dport 80 -d 10.36.0.0/29 -i eth0 -j DROP
+```
+Maka paket yang menuju port 80 (HTTP) akan didrop.
 
 
 ## Soal 3
@@ -82,6 +89,12 @@ Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk
 
 **Pembahasan:**
 
+Pada DHCP Server (Jipangu) dan DNS Server (Doriki) ditambahkan rule berikut.
+```
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 DROP
+```
+Ketika koneksi ICMP melebihi 3, maka perintah drop dilaksanakan. 
+
 
 ## Soal 4
 
@@ -89,12 +102,27 @@ Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00
 
 **Pembahasan:**
 
+Pada DNS Server (Doriki) ditambahkan rule berikut.
+```
+iptables -A INPUT -s 10.36.4.0/22 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 10.36.8.0/25 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+```
+Sehingga akses dari subnet Blueno dan Cipher dibatasi dari 07.00 sampai 15.00 di hari Senin-Kamis.
+
 
 ## Soal 5
 
 Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya.
 
 **Pembahasan:**
+Pada DNS Server (Doriki) ditambahkan rule berikut.
+```
+iptables -A INPUT -s 10.36.36.0/23 -m time --timestart 00:00 --timestop 06:59 -j ACCEPT
+iptables -A INPUT -s 10.36.36.0/23 -m time --timestart 15:01 --timestop 23:59 -j ACCEPT
+iptables -A INPUT -s 10.36.38.0/24 -m time --timestart 00:00 --timestop 06:59 -j ACCEPT
+iptables -A INPUT -s 10.36.38.0/24 -m time --timestart 15:01 --timestop 23:59 -j ACCEPT
+```
+Sehingga akses dari subnet Elena dan Fukuro dibatasi dari 00.00 sampai 06.59 dan dari 15.01 sampai 23.59.
 
 
 ## Soal 6
