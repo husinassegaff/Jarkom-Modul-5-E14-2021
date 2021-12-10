@@ -191,14 +191,14 @@ iface eth0 inet dhcp
 ```
 Setting route pada router sebagai berikut:
 - Foosha
-``
+```
 route add -net 10.36.0.0 netmask 255.255.255.248 gw 10.36.16.2	#A1
 route add -net 10.36.4.0 netmask 255.255.252.0 gw 10.36.16.2	#A2
 route add -net 10.36.8.0 netmask 255.255.255.128 gw 10.36.16.2	#A3
 route add -net 10.36.36.0 netmask 255.255.254.0 gw 10.36.32.2	#A6
 route add -net 10.36.38.0 netmask 255.255.255.0 gw 10.36.32.2	#A7
 route add -net 10.36.39.0 netmask 255.255.255.248 gw 10.36.32.2	#A8
-``
+```
 - Water7
 ```
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.36.16.1
