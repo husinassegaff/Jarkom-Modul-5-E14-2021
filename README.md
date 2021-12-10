@@ -66,6 +66,130 @@ Dari pembagian subnet tersebut, didapatkan hasil pembagian IP pada setiap subnet
 
 ![tabel-ip](img/tabel-ip.png)
 
+Setting interfaces pada masing masing node sebagai berikut
+- Foosha
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+address 10.36.32.1
+netmask 255.255.255.252
+
+auto eth2
+iface eth2 inet static
+address 10.36.16.1
+netmask 255.255.255.252
+```
+- Water7
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+address 10.36.16.2
+netmask 255.255.255.252
+gateway 10.36.16.1
+
+auto eth1
+iface eth1 inet static
+address 10.36.0.1
+netmask 255.255.255.248
+
+auto eth2
+iface eth2 inet static
+address 10.36.4.1
+netmask 255.255.252.0
+
+auto eth3
+iface eth3 inet static
+address 10.36.8.1
+netmask 255.255.255.128
+```
+- Guanhao
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+address 10.36.32.2
+netmask 255.255.255.252
+gateway 10.36.32.1
+
+auto eth1
+iface eth1 inet static
+address 10.36.39.1
+netmask 255.255.255.248
+
+auto eth2
+iface eth2 inet static
+address 10.36.38.1
+netmask 255.255.255.0
+
+auto eth3
+iface eth3 inet static
+address 10.36.36.1
+netmask 255.255.254.0
+```
+- Doriki
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+address 10.36.0.2
+netmask 255.255.255.248
+gateway 10.36.0.1
+```
+- Jipangu
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+address 10.36.0.3
+netmask 255.255.255.248
+gateway 10.36.0.1
+```
+- Jorge
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+address 10.36.39.2
+netmask 255.255.255.248
+gateway 10.36.39.1
+```
+- Maingate
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+address 10.36.39.3
+netmask 255.255.255.248
+gateway 10.36.39.1
+```
+- Clients
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+```
+
 ### 2. CIDR Routing
 
 ## Soal 1
