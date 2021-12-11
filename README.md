@@ -66,8 +66,12 @@ Dari pembagian subnet tersebut, didapatkan hasil pembagian IP pada setiap subnet
 
 ![tabel-ip](img/tabel-ip.png)
 
+### 2. CIDR Routing
+
 Setting interfaces pada masing masing node sebagai berikut
+
 - Foosha
+
 ```
 auto lo
 iface lo inet loopback
@@ -85,7 +89,9 @@ iface eth2 inet static
 address 10.36.16.1
 netmask 255.255.255.252
 ```
+
 - Water7
+
 ```
 auto lo
 iface lo inet loopback
@@ -111,7 +117,9 @@ iface eth3 inet static
 address 10.36.8.1
 netmask 255.255.255.128
 ```
+
 - Guanhao
+
 ```
 auto lo
 iface lo inet loopback
@@ -137,7 +145,9 @@ iface eth3 inet static
 address 10.36.36.1
 netmask 255.255.254.0
 ```
+
 - Doriki
+
 ```
 auto lo
 iface lo inet loopback
@@ -148,7 +158,9 @@ address 10.36.0.2
 netmask 255.255.255.248
 gateway 10.36.0.1
 ```
+
 - Jipangu
+
 ```
 auto lo
 iface lo inet loopback
@@ -159,7 +171,9 @@ address 10.36.0.3
 netmask 255.255.255.248
 gateway 10.36.0.1
 ```
+
 - Jorge
+
 ```
 auto lo
 iface lo inet loopback
@@ -170,7 +184,9 @@ address 10.36.39.2
 netmask 255.255.255.248
 gateway 10.36.39.1
 ```
+
 - Maingate
+
 ```
 auto lo
 iface lo inet loopback
@@ -181,7 +197,9 @@ address 10.36.39.3
 netmask 255.255.255.248
 gateway 10.36.39.1
 ```
+
 - Clients
+
 ```
 auto lo
 iface lo inet loopback
@@ -189,8 +207,11 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
 ```
+
 Setting route pada router sebagai berikut:
+
 - Foosha
+
 ```
 route add -net 10.36.0.0 netmask 255.255.255.248 gw 10.36.16.2	#A1
 route add -net 10.36.4.0 netmask 255.255.252.0 gw 10.36.16.2	#A2
@@ -199,16 +220,18 @@ route add -net 10.36.36.0 netmask 255.255.254.0 gw 10.36.32.2	#A6
 route add -net 10.36.38.0 netmask 255.255.255.0 gw 10.36.32.2	#A7
 route add -net 10.36.39.0 netmask 255.255.255.248 gw 10.36.32.2	#A8
 ```
+
 - Water7
+
 ```
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.36.16.1
 ```
+
 - Guanhao
+
 ```
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.36.32.1
 ```
-
-### 2. CIDR Routing
 
 ## Soal 1
 
@@ -302,3 +325,5 @@ Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap
 **Pembahasan:**
 
 ## Kendala
+
+Masih belum terlalu paham untuk nomor 6
